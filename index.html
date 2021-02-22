@@ -1,0 +1,39 @@
+<!doctype html>
+<title>v86</title>
+
+<script src="v86/libv86.js"></script>
+<script>
+"use strict";
+
+window.onload = function()
+{
+    var emulator = window.emulator = new V86Starter({
+        wasm_path: "v86/v86.wasm",
+        memory_size: 32 * 1024 * 1024,
+        vga_memory_size: 2 * 1024 * 1024,
+        screen_container: document.getElementById("screen_container"),
+        bios: {
+            url: "bios/seabios.bin",
+        },
+        vga_bios: {
+            url: "bios/vgabios.bin",
+        },
+        fda: {
+            url: "boot/boot.img",
+        },
+        autostart: true,
+    });
+}
+</script>
+
+<body style="background-color: black; text-align: center">
+    <div id="screen_container">
+        <div style="white-space: pre; font: 14px monospace; line-height: 14px"></div>
+        <center>
+            <canvas style="display: none"></canvas>
+        </center>
+    </div>
+    <div>
+        <p style="color: grey; text-align: center; font: 16px monospace">brought to you by a custom x86 kernel!<br>running on the <a href="https://github.com/copy/v86">v86 emulator</a></p>
+    </div>
+</body>
