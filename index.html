@@ -8,8 +8,7 @@
 <script>
 "use strict";
 
-window.onload = function()
-{
+window.onload = function() {
     var emulator = window.emulator = new V86Starter({
         wasm_path: "v86/v86.wasm",
         memory_size: 32 * 1024 * 1024,
@@ -37,7 +36,11 @@ window.onload = function()
         </center>
     </div>
     <div>
-        <p style="color: grey; text-align: center; font: 16px monospace">brought to you by a custom x86 kernel!<br>running on the <a href="https://github.com/copy/v86">v86 emulator</a></p>
+        <p style="color: grey; text-align: center; font: 16px monospace">
+            brought to you by a custom x86 kernel!<br>
+            running on the <a href="https://github.com/copy/v86">v86 emulator</a><br>
+            (v86 may not work properly on iOS/Safari)
+        </p>
     </div>
 </body>
 </html>
