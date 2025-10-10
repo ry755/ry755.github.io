@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styles.css">
+        <title>RetroChallenge 2022/10</title>
+    </head>
+
+    <body>
+        <div class="sidebar">
+            <a href="/index.html">home</a>
+            <a href="/fox32/index.html">fox32</a>
+            <a href="/retrochallenge/index.html" style="color: #f1f1f1">RC 2022/10</a>
+        </div>
+
+        <div class="main">
+            <h1>RetroChallenge 2022/10</h1>
+
+            <br>
+
+            <p>
+                I intend on using this month to learn how to program for vintage Mac OS, specifically System 7 and Mac OS 8/9.<br>
+                The final result will most likely be some simple game like Pong, or maybe some kind of useful utility application.<br>
+                I've wanted to do this for a while but never had enough motivation, so RetroChallenge seems to be the perfect time to get started on this :3
+            </p>
+
+            <br>
+
+            <div id="day1">
+                <h3>Day 1 (Oct. 1st)</h3>
+                <p>
+                    Signed up just in time!! I didn't know RetroChallenge was going on this month until I came across
+                    <a href="https://68kmla.org/bb/index.php?threads/announcing-retrochallenge-2022-10.42046/">this 68kmla thread</a>.
+
+                    <br>
+
+                    Let's start with the system that I intend to do my programming on. My computer of choice is a Power Macintosh 6500/275 running Mac OS 7.6.1.
+                    I tend to prefer System 7 over Mac OS 8 and 9, mainly because of the fond memories I have of using it, but I might have to end up using Mac OS 8
+                    or 9 in order to use newer development tools and reduce the amount of pain I'm throwing myself into. I guess we'll see! :D
+                </p>
+
+                <p>
+                    The tools I'm using are CodeWarrior Pro 4, ResEdit, and THINK Reference. THINK Reference is a handly little tool that comes with Symantec C++ 8.6.
+                    Even though I'm not using C++ or Symantec's tools, THINK Reference is still nice to have around because it's an easy way to look up Toolbox routines
+                    right from my classic Mac!
+                </p>
+
+                <p>
+                    I've already had a <i>tiny bit</i> of prior experience with the Macintosh Toolbox, so I was able to quickly whip up a hello world application using
+                    the demo/template included with CodeWarrior:<br>
+                    (click the image to view it larger)
+                </p>
+                <a href="images/day1/day1.jpg">
+                    <img src="images/day1/day1.jpg" alt="Photo of a hello world application" width="504" height="284">
+                </a>
+            </div>
+
+            <br>
+
+            <div id="day2">
+                <h3>Day 2 (Oct. 2nd)</h3>
+                <p>
+                    Last night and this morning I spent some time reading
+                    <a href="https://vintageapple.org/macprogramming/pdf/Foundations_of_Mac_Programming_1995.pdf">Foundations of Mac Programming</a>
+                    by Dan Parks Sydow. This is an excellent book that covers exactly what the title says: the foundations of classic Mac OS programming!
+                    Using this book as a reference, I was able to expand my super basic "hello world" demo application into something ever-so-slightly more
+                    substantial:<br>
+                    (click the image to view it larger)
+                </p>
+                <a href="images/day2/day2.jpg">
+                    <img src="images/day2/day2.jpg" alt="Photo of a hello world application, but with my fursona!" width="504" height="284">
+                </a>
+
+                <p>
+                    Yes that's right, my fursona is now trapped inside of a 1997 Macintosh, oh no!!<br>
+                    (drawn by <a href="https://foxgirl.dev/">Lua</a>!!)
+                </p>
+
+                <p>
+                    An interesting thing about classic Mac OS is that it's primarily event-driven, and the application itself is responsible for calling various
+                    Toolbox routines to handle basic things, such as window dragging, in response to events that are queued by the OS. The event loop and mouse-down
+                    handler functions of my current hello world application look like this:
+                </p>
+                <script src="https://gist.github.com/ry755/75c4f2aacf32cfd1211a6ed3c2da2d51.js"></script>
+            </div>
+
+            <p>
+                That's it for day 2, most of the work done today was behind the scenes, setting up the various event handlers and stuff. Hopefully tomorrow I'll
+                have something more exciting to show you :3
+            </p>
+
+            <br>
+        </div>
+    </body>
+</html>
