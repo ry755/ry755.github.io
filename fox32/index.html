@@ -8,14 +8,27 @@
 
 <body>
     <p>fox32 on the web!!</p>
+    <p>
+        note: performance is massively degraded in this WASM build of the emulator,
+        and there seems to be strange behavior with single-clicks being sometimes
+        registered as double-clicks. if you want the proper fox32 experience,
+        <a href="https://github.com/fox32-arch">see here</a>.
+    </p>
 
     <!-- Create the canvas that the C++ code will draw into -->
     <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
 
+    <!-- fox32 serial port output -->
+    <form>
+        <p>fox32 serial port output</p>
+        <textarea id="serial" rows="8" cols="80"></textarea>
+    </form>
+
     <!-- Allow the C++ to access the canvas element -->
     <script type='text/javascript'>
         var Module = {
-            canvas: (function() { return document.getElementById('canvas'); })()
+            canvas: (function() { return document.getElementById('canvas'); })(),
+            'print': function(str) { document.getElementById('serial').value += str; }
         };
     </script>
 
