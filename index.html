@@ -37,20 +37,17 @@
 
             <!-- the following has janky formatting in order to look good on the final page -->
             <pre class="instruction_area"><p class="instruction_area">
-    <code class="instruction_name">pop</code> [<code class="instruction_immediate">stream_ptr</code>]
+const <code class="instruction_label">ROM_string_length</code>: <code class="instruction_immediate">0xF0046018</code>
+const <code class="instruction_label">OS_write</code>: <code class="instruction_immediate">0x00000D20</code>
+const <code class="instruction_label">OS_end_current_task</code>: <code class="instruction_immediate">0x00000A18</code>
+    <code class="instruction_name">pop</code> <code class="instruction_register">r1</code>
     <code class="instruction_name">mov</code> <code class="instruction_register">r0</code>, <code class="instruction_immediate">hello_world</code>
     <code class="instruction_name">mov</code> <code class="instruction_register">r2</code>, <code class="instruction_register">r0</code>
-    <code class="instruction_name">call</code> <code class="instruction_immediate">string_length</code>
-    <code class="instruction_name">mov</code> <code class="instruction_register">r1</code>, [<code class="instruction_immediate">stream_ptr</code>]
-    <code class="instruction_name">call</code> <code class="instruction_immediate">write</code>
-    <code class="instruction_name">call</code> <code class="instruction_immediate">end_current_task</code>
+    <code class="instruction_name">call</code> [<code class="instruction_immediate">ROM_string_length</code>]
+    <code class="instruction_name">call</code> [<code class="instruction_immediate">OS_write</code>]
+    <code class="instruction_name">call</code> [<code class="instruction_immediate">OS_end_current_task</code>]
+<code class="instruction_label">hello_world</code>: data.str <code class="instruction_string">"hello world! welcome to my website!"</code> data.8 <code class="instruction_immediate">10</code> data.8 <code class="instruction_immediate">0</code>
 
-<code class="instruction_immediate">hello_world</code>: data.str <code class="instruction_string">"hello world!"</code> data.8 <code class="instruction_immediate">10</code> data.8 <code class="instruction_immediate">0</code>
-<code class="instruction_immediate">stream_ptr</code>: data.32 <code class="instruction_immediate">0</code>
-
-    #include <code class="instruction_string">"fox32rom.def"</code>
-    #include <code class="instruction_string">"fox32os.def"</code>
-</p>
 </pre>
         </div>
     </body>

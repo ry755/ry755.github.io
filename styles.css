@@ -66,9 +66,13 @@ p {
 .instruction_immediate {
     color: lightpink;
 }
+.instruction_label {
+    color: orchid;
+}
 .instruction_string {
     color: greenyellow;
 }
 .instruction_area {
     background-color: #2d3031;
+    font-family: monospace;
 }
