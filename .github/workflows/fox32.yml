@@ -38,7 +38,7 @@ jobs:
         run: |
           cp fox32os.img/fox32os.img fox32_src/fox32os.img
 
-      - name: Install libsdl2-dev and vim
+      - name: Install vim (for xxd)
         run: |
           sudo apt update
           sudo apt install -y vim
@@ -51,13 +51,12 @@ jobs:
 
       - name: Install Emscripten SDK
         run: |
-          cd emsdk
-          ./emsdk install latest
-          ./emsdk activate latest
+          emsdk/emsdk install latest
+          emsdk/emsdk activate latest
 
       - name: Build
         run: |
-          source ./emsdk_env.sh
+          source emsdk/emsdk_env.sh
           cd fox32_src
           make TARGET=wasm
           cp fox32.wasm fox32.js ../fox32/
