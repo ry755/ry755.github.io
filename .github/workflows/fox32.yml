@@ -1,14 +1,27 @@
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [$default-branch]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout site
+        uses: actions/checkout@v5
+        with:
+          path: site
 
       - name: Checkout fox32
         uses: actions/checkout@v5
@@ -59,13 +72,13 @@ jobs:
           source emsdk/emsdk_env.sh
           cd fox32_src
           make TARGET=wasm
-          cp fox32.wasm fox32.js fox32.data ../fox32/
+          cp fox32.wasm fox32.js fox32.data ../site/fox32/
 
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3
         with:
-          path: fox32/
+          path: site
 
   deploy:
     permissions:
