@@ -59,7 +59,7 @@ jobs:
           source emsdk/emsdk_env.sh
           cd fox32_src
           make TARGET=wasm
-          cp fox32.wasm fox32.js ../fox32/
+          cp fox32.wasm fox32.js fox32.data ../fox32/
 
       - name: Upload static files as artifact
         id: deployment
@@ -68,6 +68,9 @@ jobs:
           path: fox32/
 
   deploy:
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
