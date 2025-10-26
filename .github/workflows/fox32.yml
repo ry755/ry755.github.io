@@ -51,6 +51,7 @@ jobs:
 
       - name: Install Emscripten SDK
         run: |
+          cd emsdk
           ./emsdk install latest
           ./emsdk activate latest
 
