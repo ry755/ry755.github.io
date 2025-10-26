@@ -1,0 +1,79 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Checkout fox32
+        uses: actions/checkout@v5
+        with:
+          repository: 'fox32-arch/fox32'
+          path: fox32_src
+
+      - name: Download latest fox32rom artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          repo: fox32-arch/fox32rom
+          workflow: fox32rom-unstable.yml
+          workflow_conclusion: success
+
+      - name: Download latest fox32os artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          repo: fox32-arch/fox32os
+          workflow: fox32os-unstable.yml
+          workflow_conclusion: success
+
+      - name: Move fox32.rom into the root folder
+        run: |
+          cp fox32.rom/fox32.rom fox32_src/fox32.rom
+
+      - name: Move fox32os.img into the root folder
+        run: |
+          cp fox32os.img/fox32os.img fox32_src/fox32os.img
+
+      - name: Install libsdl2-dev and vim
+        run: |
+          sudo apt update
+          sudo apt install -y vim
+
+      - name: Checkout Emscripten SDK
+        uses: actions/checkout@v5
+        with:
+          repository: 'emscripten-core/emsdk'
+          path: emsdk
+
+      - name: Install Emscripten SDK
+        run: |
+          ./emsdk install latest
+          ./emsdk activate latest
+
+      - name: Build
+        run: |
+          source ./emsdk_env.sh
+          cd fox32_src
+          make TARGET=wasm
+          cp fox32.wasm fox32.js ../fox32/
+
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: fox32/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
