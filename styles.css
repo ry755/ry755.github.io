@@ -36,6 +36,11 @@
     .sidebar a {font-size: 18px;}
 }
 
+input[type=file] {
+    display: block;
+    color: lightgray;
+}
+
 a {
     color: greenyellow;
 }
