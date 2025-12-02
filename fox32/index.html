@@ -28,7 +28,9 @@
             <!-- disk management -->
             <form>
                 <h3>Insert disk from file</h3>
-                <input type="file" id="disk1file" onchange="load_file()">
+                <input type="file" id="disk1load">
+                <h3>Save disk to file</h3>
+                <button id="disk1save">Save</button>
             </form>
 
             <!-- fox32 serial port output -->
@@ -37,27 +39,9 @@
                 <textarea id="serial" rows="8" cols="80"></textarea>
             </form>
 
-            <script type='text/javascript'>
-                var Module = {
-                    canvas: (function() { return document.getElementById('canvas'); })(),
-                    'print': function(str) { document.getElementById('serial').value += str; }
-                };
-
-                let reader = new FileReader();
-                function load_file() {
-                    let files = document.getElementById('disk1file').files;
-                    let file = files[0];
-                    reader.addEventListener('loadend', insert_disk);
-                    reader.readAsArrayBuffer(file);
-                }
-                function insert_disk(e) {
-                    let result = reader.result;
-                    const uint8_view = new Uint8Array(result);
-
-                    FS.writeFile('disk1.img', uint8_view)
-                    Module.ccall('new_disk', null, ['string', 'number'], ['disk1.img', 1])
-                }
-            </script>
+            <!-- load main script -->
+            <script type="module" src="FileSaver.js"></script>
+            <script type="module" src="main.js"></script>
             <script src="fox32.js"></script>
         </div>
     </body>
