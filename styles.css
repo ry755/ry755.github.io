@@ -30,6 +30,10 @@
     max-width: 70ch;
 }
 
+.button {
+    image-rendering: pixelated;
+}
+
 /* for smaller screens */
 @media screen and (max-height: 450px) {
     .sidebar {padding-top: 15px;}
