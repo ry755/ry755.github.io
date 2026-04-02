@@ -28,6 +28,11 @@ jobs:
           repository: 'fox32-arch/fox32'
           path: fox32_src
 
+      - name: Build site
+        run: |
+          cd site
+          make
+
       - name: Download latest fox32rom artifact
         uses: dawidd6/action-download-artifact@v2
         with:
@@ -66,7 +71,7 @@ jobs:
           emsdk/emsdk install latest
           emsdk/emsdk activate latest
 
-      - name: Build
+      - name: Build fox32
         run: |
           source emsdk/emsdk_env.sh
           cd fox32_src
