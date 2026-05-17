@@ -28,6 +28,12 @@ jobs:
           repository: 'fox32-arch/fox32'
           path: fox32_src
 
+      - name: Checkout ryfs
+        uses: actions/checkout@v5
+        with:
+          repository: 'ry755/ryfs'
+          path: ryfs
+
       - name: Build site
         run: |
           cd site
@@ -55,10 +61,10 @@ jobs:
         run: |
           cp fox32os.img/fox32os.img fox32_src/fox32os.img
 
-      - name: Install vim (for xxd)
+      - name: Install vim (for xxd) and python3 (for ryfs)
         run: |
           sudo apt update
-          sudo apt install -y vim
+          sudo apt install -y vim python3
 
       - name: Checkout Emscripten SDK
         uses: actions/checkout@v5
@@ -70,6 +76,15 @@ jobs:
         run: |
           emsdk/emsdk install latest
           emsdk/emsdk activate latest
+
+      - name: Add readme.txt to fox32os.img and add to startup.bat
+        run: |
+          cd fox32_src
+          python3 ../ryfs/ryfs.py -d user/desktop add fox32os.img ../site/fox32/additional_files/readme.txt
+          python3 ../ryfs/ryfs.py -d system export fox32os.img startup.bat
+          sed -i '/exit;/i \
+          */apps/hjkl /user/desktop/readme.txt;' startup.bat
+          python3 ../ryfs/ryfs.py -d system add fox32os.img startup.bat
 
       - name: Build fox32
         run: |
