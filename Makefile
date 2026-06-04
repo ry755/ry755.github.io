@@ -1,7 +1,8 @@
 GEN_HTML = \
 	index.html \
 	retrochallenge/index.html \
-	fox32/index.html
+	fox32/index.html \
+	blog/2026-06-03/index.html
 
 all: $(GEN_HTML)
 
@@ -11,6 +12,7 @@ all: $(GEN_HTML)
 index.html: index.tm.html sidebar.sn.html
 retrochallenge/index.html: retrochallenge/index.tm.html sidebar.sn.html
 fox32/index.html: fox32/index.tm.html sidebar.sn.html
+blog/2026-06-03/index.html: blog/2026-06-03/index.tm.html sidebar.sn.html
 
 clean:
 	rm -rf $(GEN_HTML)

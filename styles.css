@@ -13,15 +13,22 @@
 
 /* sidebar links */
 .sidebar a {
-    padding: 6px 8px 6px 16px;
+    padding: 8px 0px 8px 18px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
     display: block;
 }
-
 .sidebar a:hover {
     color: #f1f1f1;
+}
+/* sidebar titles */
+.sidebar p {
+    padding: 0px 0px 0px 12px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #616161;
+    display: block;
 }
 
 .main {
