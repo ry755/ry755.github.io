@@ -23,25 +23,16 @@ jobs:
           path: site
 
       - name: Checkout fox32
-        uses: actions/checkout@v5
-        with:
-          repository: 'fox32-arch/fox32'
-          github-server-url: 'https://codeberg.org'
-          path: fox32_src
+        run: |
+          git clone https://codeberg.org/fox32-arch/fox32 fox32_src
 
       - name: Checkout fox32rom
-        uses: actions/checkout@v5
-        with:
-          repository: 'fox32-arch/fox32rom'
-          github-server-url: 'https://codeberg.org'
-          path: fox32rom
+        run: |
+          git clone https://codeberg.org/fox32-arch/fox32rom
 
       - name: Checkout fox32os
-        uses: actions/checkout@v5
-        with:
-          repository: 'fox32-arch/fox32os'
-          github-server-url: 'https://codeberg.org'
-          path: fox32os
+        run: |
+          git clone https://codeberg.org/fox32-arch/fox32os
 
       - name: Checkout ryfs
         uses: actions/checkout@v5
