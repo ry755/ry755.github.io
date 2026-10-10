@@ -28,11 +28,11 @@ jobs:
 
       - name: Checkout fox32rom
         run: |
-          git clone https://codeberg.org/fox32-arch/fox32rom
+          git clone https://codeberg.org/fox32-arch/fox32rom --recursive
 
       - name: Checkout fox32os
         run: |
-          git clone https://codeberg.org/fox32-arch/fox32os
+          git clone https://codeberg.org/fox32-arch/fox32os --recursive
 
       - name: Checkout ryfs
         uses: actions/checkout@v5
