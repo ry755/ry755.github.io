@@ -53,6 +53,10 @@ jobs:
           extract: true
           fileName: '*-x86_64-linux.zip'
 
+      - name: Mark fox32asm executable
+        run: |
+          chmod +x fox32asm
+
       - name: Install lua5.4, vim, python3
         run: |
           sudo apt update
@@ -61,7 +65,7 @@ jobs:
       - name: Build fox32rom
         run: |
           cd fox32rom
-          make FOX32ASM=../fox32asm/fox32asm
+          make FOX32ASM=../fox32asm
 
       - name: Move fox32.rom into the root folder
         run: |
@@ -70,7 +74,7 @@ jobs:
       - name: Build fox32os
         run: |
           cd fox32os
-          make FOX32ASM=../fox32asm/fox32asm
+          make FOX32ASM=../fox32asm
 
       - name: Move fox32os.img into the root folder
         run: |
