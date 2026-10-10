@@ -34,6 +34,10 @@ jobs:
         run: |
           git clone https://codeberg.org/fox32-arch/fox32os --recursive
 
+      - name: Checkout tools
+        run: |
+          git clone https://codeberg.org/fox32-arch/tools --recursive
+
       - name: Checkout ryfs
         uses: actions/checkout@v5
         with:
@@ -57,6 +61,12 @@ jobs:
         run: |
           chmod +x fox32asm
 
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
       - name: Install lua5.4, vim, python3
         run: |
           sudo apt update
@@ -71,10 +81,15 @@ jobs:
         run: |
           cp fox32rom/fox32.rom fox32_src/fox32.rom
 
+      - name: Build tools
+        run: |
+          cd tools/gfx2inc
+          cargo install --path .
+
       - name: Build fox32os
         run: |
           cd fox32os
-          make FOX32ASM=../fox32asm
+          make FOX32ASM=`pwd`/../fox32asm
 
       - name: Move fox32os.img into the root folder
         run: |
