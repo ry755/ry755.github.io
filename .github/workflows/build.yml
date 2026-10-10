@@ -25,19 +25,22 @@ jobs:
       - name: Checkout fox32
         uses: actions/checkout@v5
         with:
-          repository: 'https://codeberg.org/fox32-arch/fox32'
+          repository: 'fox32-arch/fox32'
+          github-server-url: 'https://codeberg.org'
           path: fox32_src
 
       - name: Checkout fox32rom
         uses: actions/checkout@v5
         with:
-          repository: 'https://codeberg.org/fox32-arch/fox32rom'
+          repository: 'fox32-arch/fox32rom'
+          github-server-url: 'https://codeberg.org'
           path: fox32rom
 
       - name: Checkout fox32os
         uses: actions/checkout@v5
         with:
-          repository: 'https://codeberg.org/fox32-arch/fox32os'
+          repository: 'fox32-arch/fox32os'
+          github-server-url: 'https://codeberg.org'
           path: fox32os
 
       - name: Checkout ryfs
