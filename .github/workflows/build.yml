@@ -61,7 +61,7 @@ jobs:
       - name: Build fox32rom
         run: |
           cd fox32rom
-          make FOX32ASM=../fox32asm
+          make FOX32ASM=../fox32asm/fox32asm
 
       - name: Move fox32.rom into the root folder
         run: |
@@ -70,7 +70,7 @@ jobs:
       - name: Build fox32os
         run: |
           cd fox32os
-          make FOX32ASM=../fox32asm
+          make FOX32ASM=../fox32asm/fox32asm
 
       - name: Move fox32os.img into the root folder
         run: |
