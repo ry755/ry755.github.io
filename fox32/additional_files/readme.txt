@@ -14,7 +14,7 @@ desktop and run this command:
 "userdata" can be replaced with any label you want to use for
 disk 1.
 
-A link to the fox32 Discord server can be found on the GitHub
+A link to the fox32 Discord server can be found on the Codeberg
 organization readme.
 
 Have fun!!
